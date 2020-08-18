@@ -59,7 +59,7 @@
 		function boom()
 		{
 			var invite_code = document.forms[0].elements[0].value;
-			url = "http://localhost/3c/"+invite_code;
+			url = "https://app.pluralsight.com/"+invite_code;
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if(this.status == 404){
