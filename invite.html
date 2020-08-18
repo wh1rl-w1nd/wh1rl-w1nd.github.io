@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Birthday boii :: Did you get the invite?</title>
+	<link rel="canonical" href="https://thadimaadu.ml/invite" />
+	<style>
+		.native-ad #_default_ { position: relative; padding: 10px 10px; background: repeating-linear-gradient(-45deg, transparent, transparent 5px, hsla(0, 0%, 0%, .05) 5px, hsla(0, 0%, 0%, .05) 10px) hsla(203, 11%, 23%, 0.5); font-size: 14px; line-height: 1.5; } .native-ad #_default_:after { position: absolute; bottom: 0; left: 0; overflow: hidden; width: 100%; border-bottom: solid 4px #9acc15; content: ""; transition: all .2s ease-in-out; transform: scaleX(0); } .native-ad #_default_:hover:after { transform: scaleX(1); } .native-ad .default-ad { display: none; } .native-ad ._default_ { display: inline; overflow: hidden; } .native-ad ._default_ > * { vertical-align: middle; } .native-ad a { color: inherit; text-decoration: none; } .native-ad a:hover { color: inherit; } .native-ad .default-image { display: none; } .native-ad .default-title, .native-ad .default-description { display: inline; line-height: 1; } .native-ad .default-title { position: relative; margin-right: 8px; font-weight: 600; } .native-ad .default-title:before { position: absolute; top: -23px; padding: 4px 6px; border-radius: 3px; background-color: #9acc15; color: #fff; content: "Sponsor"; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; font-size: 10px; line-height: 1; }
+	</style>
+	<link rel="stylesheet" href="./css/thadimaadu-frontend.css" />
+	<link rel="stylesheet" href="./css/icons.css" />
+	<link rel="icon" href="./assets/images/favicon.ico">
+</head>
+
+<body class="blank" style="overflow-y:hidden; ">
+	<div class="wrapper">
+		<section class="content" style="margin:0px; padding:0px;">
+			<div class="container-center centerbox">
+				<div class="view-header">
+					<div class="header-icon"> <i class="pe page-header-icon pe-7s-smile"></i> </div>
+					<div class="header-title">
+						<h1 style="font-size:24px;margin-bottom:2px;">Invite Challenge</h1> <small> Hi! Feel free to hack your way in :) </small>
+					</div>
+				</div>
+				<div class="panel panel-filled">
+					<div class="panel-body">
+						<form id="invite"> 
+							<div class="form-group "> <label class="control-label" for="code">Invite Code</label> <input type="text" title="Please enter your invite code" required="" value="" name="code" id="code" class="form-control"> <span class="help-block small"></span> </div>
+							<div>
+								<button class="btn btn-accent" onclick="boom(); return false;">Check out!</button>
+								<span id="invite_code_error" style="color: red;"></span>
+							</div>
+
+						</form>
+					</div>
+				</div><br>
+				<div class="view-header">
+					<div class="header-icon"> <i class="pe page-header-icon pe-7s-way"></i> </div>
+					<div class="header-title">
+						<h3> Want some help? </h3> <br>
+						<div style="display: inline-block"> <button class="btn btn-accent" onclick="showHint()"> Click Here! </button>
+							<p id="help_text" hidden><br> Here you go : https://del.dog/thadimaadu.txt</p>
+						</div>
+					</div>
+				</div>
+				<div class="native-ad"></div>
+			</div>
+			<div class="particles_full" id="particles-js"></div>
+		</section>
+	</div>
+	<script src="./js/thadimaadu-frontend.min.js"></script>
+	<script>
+		function showHint() { $("#help_text").show(); }
+	</script>
+	<script>
+		function boom()
+		{
+			var invite_code = document.forms[0].elements[0].value;
+			url = "http://localhost/3c/"+invite_code;
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if(this.status == 404){
+					document.getElementById('invite_code_error').innerHTML = "Oops! WRONG INVITE CODE";
+				}
+			    if (this.readyState == 4 && this.status == 200) {
+			       	// Typical action to be performed when the document is ready:
+			       	console.log(url);
+					window.location.replace(url);
+			    }
+			};
+			xhttp.open("GET", url, true);
+			xhttp.send();
+		}
+	</script>
+</body>
+
+</html>
