@@ -42,7 +42,7 @@
 					<div class="header-title">
 						<h3> Want some help? </h3> <br>
 						<div style="display: inline-block"> <button class="btn btn-accent" onclick="showHint()"> Click Here! </button>
-							<p id="help_text" hidden><br> Here you go : https://del.dog/thadimaadu.txt</p>
+							<p id="help_text" hidden><br> Here you go : <a href="https://del.dog/testing-hint.txt">del.dog/thadimaadu.txt</a></p>
 						</div>
 					</div>
 				</div>
@@ -59,20 +59,30 @@
 		function boom()
 		{
 			var invite_code = document.forms[0].elements[0].value;
-			url = "https://thadimaadu.ml/"+invite_code;
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if(this.status == 404){
-					document.getElementById('invite_code_error').innerHTML = "Oops! WRONG INVITE CODE";
-				}
-			    if (this.readyState == 4 && this.status == 200) {
-			       	// Typical action to be performed when the document is ready:
-			       	console.log(url);
-					window.location.replace(url);
-			    }
-			};
-			xhttp.open("GET", url, true);
-			xhttp.send();
+			if(!invite_code.localeCompare("index"))
+			{
+				document.getElementById('invite_code_error').innerHTML = "Oops! WRONG INVITE CODE";
+				setTimeout(() => {
+							document.getElementById('invite_code_error').innerHTML = "";
+						}, 2000)
+			}
+			else{
+				url = "https://thadimaadu.ml/"+invite_code;
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if(this.status == 404){
+						document.getElementById('invite_code_error').innerHTML = "Oops! WRONG INVITE CODE";
+						setTimeout(() => {
+							document.getElementById('invite_code_error').innerHTML = "";
+						}, 2000)
+					}
+				    if (this.readyState == 4 && this.status == 200) {
+				       	window.location.replace(url);
+				    }
+				};
+				xhttp.open("GET", url, true);
+				xhttp.send();
+			}
 		}
 	</script>
 </body>
