@@ -31,7 +31,8 @@
 							<div class="form-group "> <label class="control-label" for="code">Invite Code</label> <input type="text" title="Please enter your invite code" required="" value="" name="code" id="code" class="form-control"> <span class="help-block small"></span> </div>
 							<div>
 								<button class="btn btn-accent" onclick="boom(); return false;">Check out!</button>
-								<span id="invite_code_error" style="color: red;"></span>
+								<span id="invite_code_error" style="color: red"></span>
+								<span id="invite_code_success" style="color: green;"></span>
 							</div>
 
 						</form>
@@ -69,7 +70,11 @@
 					}, 2000)
 				}
 			    if (this.readyState == 4 && this.status == 200) {
-			       	window.location.replace(url);
+			    	document.getElementById('invite_code_success').innerHTML = "Cool! You have the invite!";
+					setTimeout(() => {
+						document.getElementById('invite_code_success').innerHTML = "";
+						window.location.assign(url);
+					}, 2000)
 			    }
 			};
 			xhttp.open("GET", url, true);
